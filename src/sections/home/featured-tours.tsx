@@ -9,6 +9,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 const tours = [
@@ -97,6 +99,8 @@ export function FeaturedTours() {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
           </Carousel>
         )}
         {isDesktop && (

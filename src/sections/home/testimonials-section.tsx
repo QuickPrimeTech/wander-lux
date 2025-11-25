@@ -22,6 +22,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import Link from "next/link";
 import { BsGoogle } from "react-icons/bs";
 import { SiTripadvisor } from "react-icons/si";
+import { SocialProof } from "./social-proof";
 
 const testimonials = [
   {
@@ -89,6 +90,7 @@ export function TestimonialsSection() {
             Stories from Our <span className="text-primary">Travelers</span>
           </h2>
         </div>
+        <SocialProof />
         <Carousel
           opts={{
             align: "start",

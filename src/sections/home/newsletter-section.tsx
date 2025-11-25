@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function NewsletterSection() {
@@ -50,9 +50,10 @@ export function NewsletterSection() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="flex-1 px-6 bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+              className="flex-1 py-3 px-6 bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
             />
             <Button type="submit" size={"xl"}>
+              <Mail />
               <span>Subscribe</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>

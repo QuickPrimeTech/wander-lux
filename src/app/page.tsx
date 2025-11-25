@@ -7,6 +7,8 @@ import { Footer } from "@/layouts/footer";
 import { Navigation } from "@/layouts/navbar";
 import { PopularTours } from "@/sections/home/popular-tours";
 import { NewsletterSection } from "@/sections/home/newsletter-section";
+import { WhyChooseUs } from "@/sections/home/why-choose-us";
+import { DestinationsSection } from "@/sections/home/destinations-section";
 
 export default function HomePage() {
   return (
@@ -17,8 +19,10 @@ export default function HomePage() {
       <StatsSection />
       <TestimonialsSection />
       <PopularTours />
-      <NewsletterSection />
+      <DestinationsSection />
+      <WhyChooseUs />
       <CTASection />
+      <NewsletterSection />
       <Footer />
     </>
   );

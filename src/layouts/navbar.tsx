@@ -66,7 +66,10 @@ export function Navigation() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground"
+            className={cn(
+              "md:hidden text-white",
+              isSticky && "text-foreground"
+            )}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

@@ -17,14 +17,13 @@ export function TourCard({ tour, index }: TourCardProps) {
   return (
     <Link
       href={`/tours/${tour.id}`}
-      className={`group relative rounded-md overflow-hidden bg-primary border border-border hover:border-primary/50 transition-all ${
+      className={`group block relative rounded-md overflow-hidden bg-primary border border-border hover:border-primary/50 transition-all ${
         index === 0 ? "md:row-span-2" : ""
       }`}
     >
       <div
-        className={`relative overflow-hidden ${
-          index === 0 ? "md:h-full" : "h-[300px]"
-        }`}
+        className={`relative overflow-hidden min-h-75
+ ${index === 0 && "md:h-full"}`}
       >
         <Image
           src={tour.image || "/placeholder.svg"}

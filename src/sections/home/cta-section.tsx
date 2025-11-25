@@ -13,7 +13,7 @@ export function CTASection() {
           alt="Luxury travel destination"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-radial from-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -30,18 +30,17 @@ export function CTASection() {
           exclusively for you.
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground text-sm uppercase tracking-widest font-semibold hover:bg-primary/90 transition-all group"
-          >
-            Plan Your Trip
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <Button asChild size={"lg"}>
+            <Link href="/contact">
+              Plan Your Trip
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
           <Button
             variant={"ghost"}
-            asChild
-            size={"xl"}
+            size={"lg"}
             className="text-white border"
+            asChild
           >
             <Link href="/tours">Browse Tours</Link>
           </Button>

@@ -46,7 +46,7 @@ const popularTours = [
     rating: 5.0,
     reviews: 188,
     image:
-      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1764078023/imgi_204_Gorilla-Tracking-Bwindi-6_mykn5s.jpg",
+      "https://res.cloudinary.com/quick-prime-tech/image/upload/v1764083925/imgi_197_Gorilla-Tracking-Bwindi-1_x21cbj.jpg",
   },
   {
     id: 4,
@@ -88,7 +88,7 @@ const popularTours = [
 
 export function PopularTours() {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-card">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-card border-y border-border">
       <div className="container mx-auto space-y-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
