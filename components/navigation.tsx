@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,35 +16,50 @@ const navLinks = [
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if navbar has reached the top (accounting for initial 24px offset)
+      setIsSticky(window.scrollY >= 24);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-t-2 backdrop-blur-md border-b border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav
+      className={cn(
+        "fixed top-6 left-0 right-0 z-50 border-t backdrop-blur-md border-b border-border/50 h-fit transition-all duration-300",
+        isSticky && "top-0 bg-background/80"
+      )}
+    >
+      <div className="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link
-            href="/"
-            className="text-2xl font-bold text-primary tracking-wider"
-          >
-            WANDERLUX
-          </Link>
+          <Button variant={"link"} asChild className="text-xl">
+            <Link href="/">
+              <div className="size-8 rounded-full bg-primary" />
+              WANDERLUX
+            </Link>
+          </Button>
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm uppercase tracking-widest text-background hover:text-primary transition-colors"
+                title={`Visit ${link.label} page`}
+                className={cn(
+                  "text-sm uppercase tracking-widest text-background hover:text-primary transition-colors font-semibold",
+                  isSticky && "text-foreground/80"
+                )}
               >
                 {link.label}
               </Link>
             ))}
             <Button asChild>
-              <Link
-                href="/contact"
-                // className="px-6 py-2 bg-primary text-primary-foreground text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
-              >
-                Book Now
-              </Link>
+              <Link href="/contact">Book Now</Link>
             </Button>
           </div>
 
@@ -70,11 +86,7 @@ export function Navigation() {
               </Link>
             ))}
             <Button asChild>
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block px-6 py-2 bg-primary text-primary-foreground text-sm uppercase tracking-widest text-center"
-              >
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
                 Book Now
               </Link>
             </Button>

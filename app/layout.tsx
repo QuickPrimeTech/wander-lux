@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={`${_playfair.variable} ${_inter.variable} font-sans antialiased`}
       >
-        {children}
+        <main className="min-h-screen bg-background relative">{children}</main>
       </body>
     </html>
   );

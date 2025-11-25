@@ -37,7 +37,7 @@ export function HeroSection() {
         setCurrentIndex((prev) => (prev + 1) % headlines.length);
         setIsVisible(true);
       }, 500);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
@@ -55,11 +55,10 @@ export function HeroSection() {
           poster="/luxury-travel-destination-aerial-view.jpg"
         >
           <source
-            src="https://videos.pexels.com/video-files/3015488/3015488-hd_1920_1080_24fps.mp4"
+            src="https://videos.pexels.com/video-files/29171868/12597610_2558_1440_30fps.mp4"
             type="video/mp4"
           />
         </video>
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" /> */}
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-transparent to-black/40" />
       </div>
 
