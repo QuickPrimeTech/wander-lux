@@ -8,17 +8,19 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
-import { Card } from "./ui/card";
+} from "@ui/carousel";
+import { Card } from "@ui/card";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@ui/dialog";
-import { Button } from "./ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+} from "@/components/ui/dialog";
+import { Button } from "@ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
+import Link from "next/link";
+import { BsGoogle } from "react-icons/bs";
 
 const testimonials = [
   {
@@ -57,7 +59,7 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-24 px-4 md:px-6 lg:px-8 bg-background">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <div className="text-center mb-16">
           <p className="text-primary text-sm uppercase tracking-widest mb-4">
             Testimonials
@@ -131,7 +133,16 @@ export function TestimonialsSection() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-
+        <div className="flex gap-4">
+          <Button asChild>
+            <Link href={"#"}>
+              <BsGoogle /> Review us on Google
+            </Link>
+          </Button>
+          <Button>
+            <Link href={"#"}>Review us on TripAdvisor</Link>
+          </Button>
+        </div>
         {/* Dialog for full testimonial */}
         <Dialog
           open={!!selectedTestimonial}

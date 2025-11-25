@@ -2,10 +2,14 @@
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@ui/button";
+import { Button } from "@/components/ui/button";
 import { TourCard } from "@/sections/home/tour-card";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { Carousel, CarouselContent, CarouselItem } from "@ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 const tours = [
   {
