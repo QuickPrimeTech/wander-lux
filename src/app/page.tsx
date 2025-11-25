@@ -1,10 +1,11 @@
-import { HeroSection } from "@/components/hero-section";
-import { FeaturedTours } from "@/components/featured-tours";
-import { StatsSection } from "@/components/stats-section";
+import { HeroSection } from "@/sections/home/hero-section";
+import { FeaturedTours } from "@/sections/home/featured-tours";
+import { StatsSection } from "@/sections/home/stats-section";
 import { TestimonialsSection } from "@/sections/home/testimonials-section";
-import { CTASection } from "@/components/cta-section";
+import { CTASection } from "@/sections/home/cta-section";
 import { Footer } from "@/layouts/footer";
 import { Navigation } from "@/layouts/navbar";
+import { PopularTours } from "@/sections/home/popular-tours";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <FeaturedTours />
       <StatsSection />
       <TestimonialsSection />
+      <PopularTours />
       <CTASection />
       <Footer />
     </>

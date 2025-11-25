@@ -31,7 +31,7 @@ export function Navigation() {
   return (
     <nav
       className={cn(
-        "fixed top-6 left-0 right-0 z-50 border-t py-3 md:py-4 lg:py-5 backdrop-blur-md border-b border-border/50 transition-all duration-300",
+        "fixed top-6 left-0 right-0 z-50 border-t py-4 md:py-5 backdrop-blur-md border-b border-border/50 transition-all duration-300",
         isSticky && "top-0 bg-background/80"
       )}
     >

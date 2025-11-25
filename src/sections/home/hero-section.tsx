@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../../components/ui/button";
 
 const headlines = [
   {
@@ -43,7 +43,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden bg-black">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -59,8 +59,8 @@ export function HeroSection() {
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-transparent to-black/10" />
       </div>
+      <div className="absolute inset-0 bg-linear-to-r from-black/80 via-transparent to-black/10" />
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-6 lg:px-8 max-w-7xl mx-auto pt-20">

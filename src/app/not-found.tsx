@@ -10,7 +10,9 @@ export default function NotFoundPage() {
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
       <div className="bg-card max-w-2xl w-full text-center">
         {/* 404 Number */}
-        <h1 className="text-7xl font-bold text-primary leading-none">404</h1>
+        <h1 className="text-7xl font-bold text-primary leading-none mb-12">
+          404
+        </h1>
 
         {/* Main Message */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">

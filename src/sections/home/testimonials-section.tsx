@@ -30,7 +30,7 @@ const testimonials = [
     location: "New York, USA",
     image: "/professional-woman-smiling-portrait.png",
     rating: 5,
-    text: "An absolutely transformative experience. The attention to detail and personalized service made our honeymoon unforgettable. Every moment was curated to perfection.",
+    text: "Our honeymoon felt absolutely magical. The team handled every detail with so much care — we honestly didn’t have to stress about a single thing. Truly world-class service.",
     tour: "Santorini Sunset",
   },
   {
@@ -39,7 +39,7 @@ const testimonials = [
     location: "London, UK",
     image: "/couple-portrait-smiling-travel.jpg",
     rating: 5,
-    text: "We've traveled with many tour companies, but Wanderlux stands apart. The guides were knowledgeable, accommodations were luxurious, and the itinerary was impeccable.",
+    text: "We've travelled with other companies before, but none match the professionalism and hospitality we experienced here. Everything was organized perfectly from day one.",
     tour: "Safari Adventure",
   },
   {
@@ -48,8 +48,28 @@ const testimonials = [
     location: "Singapore",
     image: "/asian-man-professional-portrait.png",
     rating: 5,
-    text: "The Northern Lights tour exceeded all expectations. From the exclusive viewing locations to the gourmet dining, every aspect showed their commitment to excellence.",
+    text: "The Northern Lights trip was beyond anything I imagined. The exclusive spots, the warmth of the guides, and the comfort throughout made it worth every shilling.",
     tour: "Northern Lights",
+  },
+
+  // ⭐ New Kenyan-style testimonials
+  {
+    id: 4,
+    name: "Amina Njoroge",
+    location: "Nairobi, Kenya",
+    image: "/kenyan-woman-portrait-smiling.jpg",
+    rating: 5,
+    text: "I’ve always wanted a well-planned vacation without the usual stress. Wanderlux delivered exactly that. From the pickup to the hotel choices — everything was smooth, classy, and very organized.",
+    tour: "Cape Town Getaway",
+  },
+  {
+    id: 5,
+    name: "Brian Otieno",
+    location: "Kisumu, Kenya",
+    image: "/kenyan-man-portrait.jpg",
+    rating: 5,
+    text: "Honestly, this was the easiest trip I’ve ever taken. Communication was clear, the itinerary made sense, and the experience felt premium from start to finish. Definitely booking with them again.",
+    tour: "Dubai Experience",
   },
 ];
 
@@ -131,8 +151,8 @@ export function TestimonialsSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious title={`See more testimonials`} />
+          <CarouselNext title="See more testimonials" />
         </Carousel>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Button asChild size={"lg"}>
