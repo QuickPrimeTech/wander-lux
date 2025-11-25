@@ -21,6 +21,7 @@ import { Button } from "@ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import Link from "next/link";
 import { BsGoogle } from "react-icons/bs";
+import { SiTripadvisor } from "react-icons/si";
 
 const testimonials = [
   {
@@ -59,8 +60,8 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-24 px-4 md:px-6 lg:px-8 bg-background">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
+      <div className="container mx-auto space-y-16">
+        <div className="text-center">
           <p className="text-primary text-sm uppercase tracking-widest mb-4">
             Testimonials
           </p>
@@ -133,14 +134,16 @@ export function TestimonialsSection() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-        <div className="flex gap-4">
-          <Button asChild>
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <Button asChild size={"lg"}>
             <Link href={"#"}>
               <BsGoogle /> Review us on Google
             </Link>
           </Button>
-          <Button>
-            <Link href={"#"}>Review us on TripAdvisor</Link>
+          <Button asChild size={"lg"} variant={"secondary"}>
+            <Link href={"#"}>
+              <SiTripadvisor /> Review us on TripAdvisor
+            </Link>
           </Button>
         </div>
         {/* Dialog for full testimonial */}
