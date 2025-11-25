@@ -59,11 +59,11 @@ export function HeroSection() {
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-transparent to-black/10" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-20">
+      <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-6 lg:px-8 max-w-7xl mx-auto pt-20">
         {/* Animated Headlines */}
         <div className="max-w-3xl">
           <div

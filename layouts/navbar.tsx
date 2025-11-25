@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -31,12 +31,12 @@ export function Navigation() {
   return (
     <nav
       className={cn(
-        "fixed top-6 left-0 right-0 z-50 border-t backdrop-blur-md border-b border-border/50 h-fit transition-all duration-300",
+        "fixed top-6 left-0 right-0 z-50 border-t py-3 md:py-4 lg:py-5 backdrop-blur-md border-b border-border/50 transition-all duration-300",
         isSticky && "top-0 bg-background/80"
       )}
     >
       <div className="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between">
           <Button variant={"link"} asChild className="text-xl">
             <Link href="/">
               <div className="size-8 rounded-full bg-primary" />

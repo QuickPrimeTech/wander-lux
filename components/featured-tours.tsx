@@ -1,6 +1,11 @@
-import { ArrowRight, Clock, MapPin, Users } from "lucide-react";
+"use client";
+
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@ui/button";
+import { TourCard } from "@/sections/home/tour-card";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { Carousel, CarouselContent, CarouselItem } from "@ui/carousel";
 
 const tours = [
   {
@@ -56,6 +61,7 @@ const tours = [
 ];
 
 export function FeaturedTours() {
+  const { isMobile, isDesktop } = useMediaQuery();
   return (
     <section className="py-24 px-4 md:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -78,54 +84,24 @@ export function FeaturedTours() {
             </Link>
           </Button>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {tours.map((tour, index) => (
-            <Link
-              key={tour.id}
-              href={`/tours/${tour.id}`}
-              className={`group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all ${
-                index === 0 ? "md:row-span-2" : ""
-              }`}
-            >
-              <div
-                className={`relative overflow-hidden ${
-                  index === 0 ? "h-[400px] md:h-full" : "h-[300px]"
-                }`}
-              >
-                <img
-                  src={tour.image || "/placeholder.svg"}
-                  alt={tour.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="flex items-center gap-4 text-white/80 text-sm mb-3">
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    {tour.location}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {tour.duration}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {tour.groupSize}
-                  </span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                  {tour.title}
-                </h3>
-                <p className="text-primary font-semibold">
-                  From Ksh {tour.price.toLocaleString()}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {isMobile && (
+          <Carousel>
+            <CarouselContent>
+              {tours.map((tour, index) => (
+                <CarouselItem className="" key={tour.title}>
+                  <TourCard tour={tour} index={index} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        )}
+        {isDesktop && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {tours.map((tour, index) => (
+              <TourCard tour={tour} index={index} key={tour.title} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

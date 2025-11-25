@@ -1,7 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react"
+import { Quote, Star, User } from "lucide-react";
+import { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
+import { Card } from "./ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@ui/dialog";
+import { Button } from "./ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const testimonials = [
   {
@@ -31,68 +48,145 @@ const testimonials = [
     text: "The Northern Lights tour exceeded all expectations. From the exclusive viewing locations to the gourmet dining, every aspect showed their commitment to excellence.",
     tour: "Northern Lights",
   },
-]
+];
 
 export function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const prev = () => setCurrentIndex((i) => (i - 1 + testimonials.length) % testimonials.length)
-  const next = () => setCurrentIndex((i) => (i + 1) % testimonials.length)
+  const [selectedTestimonial, setSelectedTestimonial] = useState<
+    (typeof testimonials)[0] | null
+  >(null);
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+    <section className="py-24 px-4 md:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-primary text-sm uppercase tracking-widest mb-4">Testimonials</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-balance">
+          <p className="text-primary text-sm uppercase tracking-widest mb-4">
+            Testimonials
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">
             Stories from Our <span className="text-primary">Travelers</span>
           </h2>
         </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {testimonials.map((testimonial) => (
+              <CarouselItem
+                key={testimonial.id}
+                className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
+              >
+                <Card className="bg-card border border-border p-6 h-full flex flex-col">
+                  <Quote className="size-6 text-primary" />
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="bg-card border border-border p-8 sm:p-12">
-            <Quote className="w-12 h-12 text-primary mb-6" />
+                  <div className="flex">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-5 h-5 fill-primary text-primary"
+                      />
+                    ))}
+                  </div>
 
-            <div className="flex mb-4">
-              {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-primary text-primary" />
-              ))}
-            </div>
+                  <div className="grow mb-4">
+                    <p className="text-lg text-foreground leading-relaxed line-clamp-3">
+                      &quot;{testimonial.text}&quot;
+                    </p>
+                    <Button
+                      variant="link"
+                      className="px-0 h-auto text-primary hover:text-primary/80 mt-2"
+                      onClick={() => setSelectedTestimonial(testimonial)}
+                    >
+                      Read more
+                    </Button>
+                  </div>
 
-            <p className="text-lg sm:text-xl text-foreground leading-relaxed mb-8">
-              "{testimonials[currentIndex].text}"
-            </p>
+                  <div className="flex items-center gap-4 mt-auto">
+                    <Avatar className="size-12 rounded-full object-cover border-2 border-primary">
+                      <AvatarImage
+                        src={selectedTestimonial?.image}
+                        alt={selectedTestimonial?.name}
+                      />
+                      <AvatarFallback>
+                        <User />
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="font-semibold text-foreground">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.location}
+                      </p>
+                      <p className="text-sm text-primary">{testimonial.tour}</p>
+                    </div>
+                  </div>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
 
-            <div className="flex items-center gap-4">
-              <img
-                src={testimonials[currentIndex].image || "/placeholder.svg"}
-                alt={testimonials[currentIndex].name}
-                className="w-14 h-14 rounded-full object-cover border-2 border-primary"
-              />
-              <div>
-                <p className="font-semibold text-foreground">{testimonials[currentIndex].name}</p>
-                <p className="text-sm text-muted-foreground">{testimonials[currentIndex].location}</p>
-                <p className="text-sm text-primary">{testimonials[currentIndex].tour}</p>
+        {/* Dialog for full testimonial */}
+        <Dialog
+          open={!!selectedTestimonial}
+          onOpenChange={() => setSelectedTestimonial(null)}
+        >
+          <DialogContent className="md:max-w-[600px]">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-4">
+                <Avatar className="size-12 rounded-full object-cover border-2 border-primary">
+                  <AvatarImage
+                    src={selectedTestimonial?.image}
+                    alt={selectedTestimonial?.name}
+                  />
+                  <AvatarFallback>
+                    <User />
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="font-semibold text-foreground">
+                    {selectedTestimonial?.name}
+                  </p>
+                  <p className="text-sm text-muted-foreground font-normal">
+                    {selectedTestimonial?.location}
+                  </p>
+                </div>
+              </DialogTitle>
+              <DialogDescription className="sr-only">
+                Full testimonial from {selectedTestimonial?.name}
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="mt-4">
+              <div className="flex mb-4">
+                {[...Array(selectedTestimonial?.rating || 0)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                ))}
+              </div>
+              <Quote className="size-6 text-primary/80 mb-2" />
+
+              <p className="text-lg text-foreground leading-relaxed mb-4">
+                {selectedTestimonial?.text}
+              </p>
+
+              <div className="pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  Tour:{" "}
+                  <span className="text-primary font-medium">
+                    {selectedTestimonial?.tour}
+                  </span>
+                </p>
               </div>
             </div>
-          </div>
-
-          <div className="flex justify-center gap-4 mt-8">
-            <button
-              onClick={prev}
-              className="p-3 border border-border hover:border-primary hover:text-primary transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={next}
-              className="p-3 border border-border hover:border-primary hover:text-primary transition-colors"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
-  )
+  );
 }
