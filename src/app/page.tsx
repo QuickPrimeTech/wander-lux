@@ -9,6 +9,7 @@ import { PopularTours } from "@/sections/home/popular-tours";
 import { NewsletterSection } from "@/sections/home/newsletter-section";
 import { WhyChooseUs } from "@/sections/home/why-choose-us";
 import { DestinationsSection } from "@/sections/home/destinations-section";
+import { Chatbot } from "@/layouts/chatbot";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
       <CTASection />
       <NewsletterSection />
       <Footer />
+      <Chatbot />
     </>
   );
 }
