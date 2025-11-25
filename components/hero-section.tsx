@@ -104,35 +104,26 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
-
-        {/* Headline Indicators */}
-        <div className="absolute bottom-12 left-4 sm:left-8 lg:left-[calc((100vw-80rem)/2+2rem)] flex gap-2">
-          {headlines.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setIsVisible(false);
-                setTimeout(() => {
-                  setCurrentIndex(i);
-                  setIsVisible(true);
-                }, 300);
-              }}
-              className={`w-12 h-1 transition-all ${
-                i === currentIndex
-                  ? "bg-primary"
-                  : "bg-foreground/30 hover:bg-foreground/50"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 right-4 sm:right-8 lg:right-[calc((100vw-80rem)/2+2rem)] flex flex-col items-center gap-2">
-          <span className="text-xs uppercase tracking-widest text-muted-foreground rotate-90 origin-center mb-8">
-            Scroll
-          </span>
-          <div className="w-px h-16 bg-linear-to-b from-primary to-transparent" />
-        </div>
+      </div>
+      {/* Headline Indicators */}
+      <div className="absolute left-1/2 bottom-4 -translate-x-1/2 flex gap-2">
+        {headlines.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              setIsVisible(false);
+              setTimeout(() => {
+                setCurrentIndex(i);
+                setIsVisible(true);
+              }, 300);
+            }}
+            className={`size-4 rounded-full transition-all ${
+              i === currentIndex
+                ? "bg-primary"
+                : "bg-white/30 hover:bg-white/50"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
