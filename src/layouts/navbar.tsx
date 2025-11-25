@@ -1,9 +1,16 @@
 "use client";
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -20,7 +27,6 @@ export function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if navbar has reached the top (accounting for initial 24px offset)
       setIsSticky(window.scrollY >= 24);
     };
 
@@ -31,7 +37,7 @@ export function Navigation() {
   return (
     <nav
       className={cn(
-        "fixed top-6 left-0 right-0 z-50 border-t py-4 md:py-5 backdrop-blur-md border-b border-border/50 transition-all duration-300",
+        "fixed top-6 left-0 right-0 z-50 border-t bg-black/10 py-5 backdrop-blur-md border-b border-border/50 transition-all duration-300",
         isSticky && "top-0 bg-background/80"
       )}
     >
@@ -44,6 +50,7 @@ export function Navigation() {
             </Link>
           </Button>
 
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -64,39 +71,64 @@ export function Navigation() {
             </Button>
           </div>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={cn(
-              "md:hidden text-white",
-              isSticky && "text-foreground"
-            )}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+          {/* Mobile Navigation Sheet */}
+          <div className="md:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <button
+                  className={cn(
+                    "text-white transition-colors",
+                    isSticky && "text-foreground"
+                  )}
+                  aria-label="Toggle menu"
+                >
+                  <Menu size={24} />
+                </button>
+              </SheetTrigger>
+              <SheetContent className="w-4/5 md:w-3/4 px-8">
+                <SheetHeader className="text-left mb-8">
+                  <SheetTitle className="flex items-center gap-3 text-2xl">
+                    <div className="size-10 rounded-full bg-primary" />
+                    WANDERLUX
+                  </SheetTitle>
+                </SheetHeader>
 
-      {isOpen && (
-        <div className="md:hidden bg-background border-t border-border">
-          <div className="px-4 py-6 space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button asChild>
-              <Link href="/contact" onClick={() => setIsOpen(false)}>
-                Book Now
-              </Link>
-            </Button>
+                <nav className="flex flex-col gap-6">
+                  {navLinks.map((link) => (
+                    <SheetClose key={link.href} asChild>
+                      <Link
+                        href={link.href}
+                        className="text-base uppercase tracking-widest text-foreground hover:text-primary transition-colors font-semibold py-2 border-b border-border/50 hover:border-primary/50"
+                      >
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mt-4">
+                    <SheetClose asChild>
+                      <Button asChild className="w-full" size={"lg"}>
+                        <Link href="/contact">Book Now</Link>
+                      </Button>
+                    </SheetClose>
+                  </div>
+                </nav>
+
+                {/* Optional: Add additional info */}
+                <div className="bg-card  py-4 absolute bottom-8 left-6 right-6">
+                  <div className="text-sm text-muted-foreground space-y-2">
+                    <p className="text-xs uppercase tracking-wider font-semibold text-foreground">
+                      Contact Us
+                    </p>
+                    <p>support@wanderlux.com</p>
+                    <p>+254712345678</p>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
