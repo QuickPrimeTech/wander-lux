@@ -17,7 +17,7 @@ export function TourCard({ tour, index }: TourCardProps) {
   return (
     <Link
       href={`/tours/${tour.id}`}
-      className={`group relative overflow-hidden bg-primary border border-border hover:border-primary/50 transition-all ${
+      className={`group relative rounded-md overflow-hidden bg-primary border border-border hover:border-primary/50 transition-all ${
         index === 0 ? "md:row-span-2" : ""
       }`}
     >

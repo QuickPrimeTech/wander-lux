@@ -51,8 +51,9 @@ export function Navigation() {
                 href={link.href}
                 title={`Visit ${link.label} page`}
                 className={cn(
-                  "text-sm uppercase tracking-widest text-background hover:text-primary transition-colors font-semibold",
-                  isSticky && "text-foreground/80"
+                  "text-sm uppercase tracking-widest text-background/90 transition-colors font-semibold",
+                  isSticky && "text-foreground/80",
+                  isSticky && "hover:text-primary"
                 )}
               >
                 {link.label}

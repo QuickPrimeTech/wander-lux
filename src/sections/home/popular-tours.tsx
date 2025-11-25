@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, MapPin, Star, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Clock,
+  ExternalLink,
+  MapPin,
+  Star,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -107,7 +114,7 @@ export function PopularTours() {
             <Link
               key={tour.id}
               href={`/tours/${tour.id}`}
-              className="group bg-background border border-border hover:border-primary/50 transition-all overflow-hidden"
+              className="group bg-background border border-border hover:border-primary/50 transition-all overflow-hidden rounded-md"
             >
               <div className="relative bg-black h-60 overflow-hidden">
                 <Image
@@ -163,6 +170,18 @@ export function PopularTours() {
               </div>
             </Link>
           ))}
+        </div>
+        <div className="flex justify-center gap-3">
+          <Button size={"lg"} asChild>
+            <Link href={"/tours"}>
+              Explore All <ArrowRight />
+            </Link>
+          </Button>
+          <Button size={"lg"} variant="secondary" asChild>
+            <Link href={"#"}>
+              Contact Us <ExternalLink />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
