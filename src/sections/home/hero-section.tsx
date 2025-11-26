@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../../components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const headlines = [
   {
@@ -29,6 +36,7 @@ const headlines = [
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -92,15 +100,44 @@ export function HeroSection() {
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size={"xl"} variant={"secondary"} className="group">
-              <Play className="group-hover:scale-110 transition-transform" />
-              Watch Our Story
-            </Button>
+            {/* Watch Our Story Dialog */}
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  size="xl"
+                  variant="secondary"
+                  className="group flex items-center gap-2"
+                >
+                  <Play className="group-hover:scale-110 transition-transform" />
+                  Watch Our Story
+                </Button>
+              </DialogTrigger>
+
+              <DialogContent className="max-w-4xl p-0 overflow-hidden">
+                <DialogHeader className="p-4 pb-0">
+                  <DialogTitle>Our Story</DialogTitle>
+                </DialogHeader>
+
+                <div className="p-4">
+                  <div className="aspect-video w-full rounded-lg overflow-hidden">
+                    {open && (
+                      <iframe
+                        className="w-full h-full"
+                        src="https://www.youtube.com/embed/CrfVBQEO2Zc?si=tGVCLGrqqgJUnQqN&autoplay=1"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )}
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
       {/* Headline Indicators */}
-      <div className="absolute left-1/2 bottom-4 -translate-x-1/2 flex gap-2">
+      <div className="z-20 absolute left-1/2 bottom-4 -translate-x-1/2 flex gap-2">
         {headlines.map((_, i) => (
           <button
             key={i}
@@ -116,6 +153,7 @@ export function HeroSection() {
                 ? "bg-primary"
                 : "bg-white/30 hover:bg-white/50"
             }`}
+            aria-label={`View the ${i + 1} header and description`}
           />
         ))}
       </div>
