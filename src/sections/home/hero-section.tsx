@@ -45,20 +45,15 @@ export function HeroSection() {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 h-full">
         <video
+          src="https://res.cloudinary.com/quick-prime-tech/video/upload/q_auto/f_auto:video/12597611_3838_2160_30fps_m7atby?_s=vp-1.11.1"
           autoPlay
-          muted
           loop
+          muted
           playsInline
-          className="w-full h-full object-cover"
-          poster="/luxury-travel-destination-aerial-view.jpg"
-        >
-          <source
-            src="https://videos.pexels.com/video-files/29171868/12597610_2558_1440_30fps.mp4"
-            type="video/mp4"
-          />
-        </video>
+          className="w-full h-screen object-cover"
+        />
       </div>
       <div className="absolute inset-0 bg-linear-to-r from-black/80 via-transparent to-black/10" />
 

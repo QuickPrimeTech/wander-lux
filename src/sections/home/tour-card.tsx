@@ -1,6 +1,8 @@
-import { Clock, MapPin, Users } from "lucide-react";
+import { Clock, MapPin, Users, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 type TourCardProps = {
   tour: {
     id: number;
@@ -13,17 +15,18 @@ type TourCardProps = {
   };
   index: number;
 };
+
 export function TourCard({ tour, index }: TourCardProps) {
   return (
-    <Link
-      href={`/tours/${tour.id}`}
-      className={`group block relative rounded-md overflow-hidden bg-primary border border-border hover:border-primary/50 transition-all ${
+    <div
+      className={`group relative rounded-md overflow-hidden bg-primary border border-border hover:border-primary/50 transition-all ${
         index === 0 ? "md:row-span-2" : ""
       }`}
     >
       <div
-        className={`relative overflow-hidden min-h-75
- ${index === 0 && "md:h-full"}`}
+        className={`relative overflow-hidden min-h-[300px] ${
+          index === 0 && "md:h-full"
+        }`}
       >
         <Image
           src={tour.image || "/placeholder.svg"}
@@ -52,10 +55,23 @@ export function TourCard({ tour, index }: TourCardProps) {
         <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
           {tour.title}
         </h3>
-        <p className="text-primary font-semibold">
-          From Ksh {tour.price.toLocaleString()}
-        </p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <p className="text-primary font-semibold">
+            From Ksh {tour.price.toLocaleString()}
+          </p>
+          <Button
+            asChild
+            size="sm"
+            className="group/btn w-fit"
+            variant={"secondary"}
+          >
+            <Link href={`/tours/${tour.id}`}>
+              Explore
+              <ArrowRight className=" group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
+        </div>
       </div>
-    </Link>
+    </div>
   );
 }

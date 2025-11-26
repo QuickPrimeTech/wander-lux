@@ -77,8 +77,8 @@ export function FeaturedTours() {
               Featured Experiences
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-balance">
-              Curated Tours for the{" "}
-              <span className="text-primary">Discerning</span> Traveler
+              Discover the <span className="text-primary">Best Tours</span> in
+              East Africa
             </h2>
           </div>
           <Button variant={"link"} asChild>
