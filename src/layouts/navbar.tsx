@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -33,6 +34,25 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+    },
+  };
 
   return (
     <nav
@@ -87,35 +107,65 @@ export function Navigation() {
               </SheetTrigger>
               <SheetContent className="w-4/5 md:w-3/4 px-8">
                 <SheetHeader className="text-left mb-8">
-                  <SheetTitle className="flex items-center gap-3 text-2xl">
-                    <div className="size-10 rounded-full bg-primary" />
-                    WANDERLUX
-                  </SheetTitle>
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={
+                      isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
+                    }
+                    transition={{ duration: 0.3 }}
+                  >
+                    <SheetTitle className="flex items-center gap-3 text-2xl">
+                      <div className="size-10 rounded-full bg-primary" />
+                      WANDERLUX
+                    </SheetTitle>
+                  </motion.div>
                 </SheetHeader>
 
-                <nav className="flex flex-col gap-6">
+                <motion.nav
+                  className="flex flex-col gap-6"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate={isOpen ? "visible" : "hidden"}
+                >
                   {navLinks.map((link) => (
-                    <SheetClose key={link.href} asChild>
-                      <Link
-                        href={link.href}
-                        className="text-base uppercase tracking-widest text-foreground hover:text-primary transition-colors font-semibold py-2 border-b border-border/50 hover:border-primary/50"
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
+                    <motion.div
+                      key={link.href}
+                      variants={itemVariants}
+                      transition={{
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 12,
+                      }}
+                    >
+                      <SheetClose asChild>
+                        <Link
+                          href={link.href}
+                          className="text-base uppercase tracking-widest text-foreground hover:text-primary transition-colors font-semibold py-2 border-b border-border/50 hover:border-primary/50 block"
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                    </motion.div>
                   ))}
 
-                  <div className="mt-4">
+                  <motion.div className="mt-4" variants={itemVariants}>
                     <SheetClose asChild>
                       <Button asChild className="w-full" size={"lg"}>
                         <Link href="/contact">Book Now</Link>
                       </Button>
                     </SheetClose>
-                  </div>
-                </nav>
+                  </motion.div>
+                </motion.nav>
 
                 {/* Optional: Add additional info */}
-                <div className="bg-card  py-4 absolute bottom-8 left-6 right-6">
+                <motion.div
+                  className="bg-card py-4 absolute bottom-8 left-6 right-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={
+                    isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+                  }
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                >
                   <div className="text-sm text-muted-foreground space-y-2">
                     <p className="text-xs uppercase tracking-wider font-semibold text-foreground">
                       Contact Us
@@ -123,7 +173,7 @@ export function Navigation() {
                     <p>support@wanderlux.com</p>
                     <p>+254712345678</p>
                   </div>
-                </div>
+                </motion.div>
               </SheetContent>
             </Sheet>
           </div>
